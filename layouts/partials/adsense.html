@@ -1,0 +1,18 @@
+{{if .Site.Params.isRelease }}
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- single post -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="{{.Site.Params.adClient}}"
+     data-ad-slot="{{.Site.Params.adSlot}}"
+     data-ad-format="{{.Site.Params.adFormat}}"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+{{ else }}
+<script>
+    console.log("adsense client {{.Site.Params.adClient}}")
+    console.log("adsense slot {{.Site.Params.adSlot}}")
+    console.log("adsense format {{.Site.Params.adFormat}}")
+</script>
+{{ end }}

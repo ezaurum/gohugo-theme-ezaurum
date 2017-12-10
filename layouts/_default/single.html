@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<head>
+    {{partial "head_post" . }}
+</head>
+<html>
+<body>
+<h1>{{.Title}}</h1>
+{{ .Date.Format "2006-01-02" }}
+<section>{{.Content}}</section>
+{{ partial "comment" . }}
+
+{{ partial "adsense" . }}
+
+{{ partial "footer" . }}
+</body>
+</html>
