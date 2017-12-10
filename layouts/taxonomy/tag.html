@@ -1,12 +1,12 @@
 {{ define "main" }}
-
-<h2>{{.Title}}</h2>
+<h2>Tag : {{ .Title }}</h2>
 
 <ul>
-    {{ range .Data.Pages }}
+    {{range .Data.Pages}}
     <li>
         <a href="{{.Permalink}}">{{.Title}}</a>
     </li>
     {{ end }}
 </ul>
-{{ end }}
+
+{{end}}

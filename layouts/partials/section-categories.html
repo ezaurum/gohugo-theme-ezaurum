@@ -1,0 +1,7 @@
+<ul class="taxonomies series">
+    <h2>카테고리</h2>
+    {{ range $key, $value := $.Site.Taxonomies.categories }}
+        <li><a href="/categories/{{$key}}">{{ $key }}</a></li>
+    {{ end }}
+</ul>
+

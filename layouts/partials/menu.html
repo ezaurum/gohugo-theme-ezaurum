@@ -1,0 +1,5 @@
+<nav>
+{{ range where .Site.Pages "Type" "eq" "page" }}
+    <a href="{{ .Permalink }}">{{ .Title }}</a>
+{{end}}
+</nav>
