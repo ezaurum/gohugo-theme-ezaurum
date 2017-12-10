@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
-{{ partial "head_index" . }}
-<body>
-
+{{define "main"}}
 <h1>posts</h1>
+
 {{ range first 10 .Data.Pages }}
-{{ if eq .Type "post"}}
-<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-{{ end }}
+    {{ if eq .Type "post"}}
+<a href="{{ .Permalink }}"><h1>{{.Title}}</h1></a>
+    {{ end }}
 {{ end }}
 
 <h1>pages</h1>
@@ -16,8 +13,4 @@
 <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
 {{ end }}
 {{ end }}
-
-</body>
-
-{{ partial "footer.html" . }}
-</html>
+{{end}}

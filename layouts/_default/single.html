@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<head>
-    {{partial "head_post" . }}
-</head>
-<html>
-<body>
+{{define "main"}}
 <h1>{{.Title}}</h1>
 {{ .Date.Format "2006-01-02" }}
 <section>{{.Content}}</section>
@@ -11,6 +6,4 @@
 
 {{ partial "adsense" . }}
 
-{{ partial "footer" . }}
-</body>
-</html>
+{{end}}

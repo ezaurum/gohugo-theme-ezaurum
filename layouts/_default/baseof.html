@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang='{{ $.Site.LanguageCode | default "ko" }}'>
+<head>
+    <meta charset="UTF-8">
+    {{ partial "analytics.html" . }}
+    <title>{{block "title" . }}  {{ with .Title}} {{.}} - {{end}} {{ .Site.Title }} {{end}}</title>
+</head>
+<body class='{{ $.Param "body_classes" | default "index" }}'>
+{{block "header" . }}
+    {{ partial "site-header.html" . }}
+{{end}}
+
+{{block "main" . }} {{ end }}
+
+{{block "footer" . }}
+    {{ partial "site-footer.html" . }}
+{{end}}
+
+{{block "scripts" . }}
+    {{ partial "site-scripts.html" . }}
+{{end}}
+</body>
+</html>
