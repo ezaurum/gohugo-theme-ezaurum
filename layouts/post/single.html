@@ -1,0 +1,50 @@
+{{define "main"}}
+<h1>{{.Title}}</h1>
+{{ .Date.Format "2006-01-02" }}
+<section>{{.Content}}</section>
+
+{{if .Params.Categories }}
+<ul class="taxonomy category">
+    Category
+    {{range .Params.Categories }}
+    <li><a href="/categories/{{ . | urlize }}">{{.}}</a></li>
+    {{end}}</ul>
+</ul>
+{{ end }}
+
+{{if .Params.Tags }}
+    <ul class="taxonomy tag">
+        Tag
+        {{range .Params.Tags }}
+        <li><a href="/tags/{{ . | urlize }}">{{.}}</a></li>
+        {{end}}</ul>
+    </ul>
+{{ end }}
+
+{{if .Prev}}
+<a href="{{ .Prev.Permalink }}"> {{.Prev.Title}}</a>
+{{end}}
+{{if .Next}}
+<a href="{{ .Next.Permalink  }}">{{ .Next.Title}}</a>
+{{end}}
+
+{{if .Params.Series }}
+    <ul>시리즈
+    {{range .Params.Series }}
+        {{$sn := .}}
+
+        {{ range $.Site.Pages.ByTitle }}
+            {{ if in .Params.series $sn  }}
+        <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
+            {{ end }}
+        {{ end }}
+
+    {{end}}
+    </ul>
+{{ end }}
+
+{{ partial "comment" . }}
+
+{{ partial "adsense" . }}
+
+{{end}}

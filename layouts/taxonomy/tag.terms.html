@@ -1,0 +1,9 @@
+{{define "main"}}
+{{ $data := .Data }}
+<h1>{{ $data.Plural }}</h1>
+<ul class="taxonomy tag">
+    {{ range $key, $value := .Data.Terms.ByCount }}
+    <li><a href="{{ $.Site.LanguagePrefix }}/{{ $data.Plural }}/{{ $value.Name | urlize }}"> {{ $value.Name }} ( {{ $value.Count }} ) </a></li>
+    {{ end }}
+</ul>
+{{end}}
