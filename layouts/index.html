@@ -1,5 +1,4 @@
 {{define "main"}}
-<h1>posts</h1>
 
 {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
 

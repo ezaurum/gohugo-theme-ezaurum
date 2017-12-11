@@ -1,4 +1,5 @@
 {{define "main"}}
+<main class="post single">
 <h1>{{.Title}}</h1>
 {{ .Date.Format "2006-01-02" }}
 <section>{{.Content}}</section>
@@ -46,5 +47,5 @@
 {{ partial "comment" . }}
 
 {{ partial "adsense" . }}
-
+</main>
 {{end}}
