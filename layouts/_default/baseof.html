@@ -10,8 +10,16 @@
   <link href="{{ .RSSLink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
   <link href="{{ .RSSLink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
 {{ end }}
+    {{ if .RSSLink }}
+    {{end}}
+
+    {{ template "_internal/schema.html" . }}
+    {{ template "_internal/twitter_cards.html" . }}
+    {{ template "_internal/opengraph.html" . }}
+    {{ template "_internal/google_news.html" . }}
+
 </head>
-<body class='{{ $.Param "body_classes" | default "index" }}'>
+<body>
 {{block "header" . }}
     {{ partial "site-header.html" . }}
 {{end}}
