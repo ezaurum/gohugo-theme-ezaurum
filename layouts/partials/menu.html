@@ -2,4 +2,5 @@
 {{ range where .Site.Pages "Type" "eq" "page" }}
     <a href="{{ .Permalink }}">{{ .Title }}</a>
 {{end}}
+    <a href="/bug">버그일기</a>
 </nav>
