@@ -1,6 +1,7 @@
 <nav>
-{{ range where .Site.Pages "Type" "eq" "page" }}
-    <a href="{{ .Permalink }}">{{ .Title }}</a>
-{{end}}
+    {{ range where .Site.Pages "Type" "eq" "page" }}
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+    {{end}}
     <a href="/bug">버그일기</a>
+    <a href="/retrospective">회고</a>
 </nav>
