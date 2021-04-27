@@ -39,3 +39,8 @@ a:hover  {
 .pagination a {
     text-decoration: none;
 }
+
+pre {
+	background:#afafaf;
+}
+
