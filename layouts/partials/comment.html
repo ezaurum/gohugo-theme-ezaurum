@@ -1,5 +1,0 @@
-{{if .Site.Params.isRelease }}
-    {{ template "_internal/disqus.html" . }}
-{{ else }}
-<script>console.log("disquss {{ .Site.DisqusShortname }}")</script>
-{{end}}
