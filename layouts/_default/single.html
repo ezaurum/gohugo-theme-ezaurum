@@ -37,9 +37,8 @@
     {{ end }}
 
     {{ if ne .Type "page" }}
-    {{ $older := "" }}{{ $newer := "" }}
-    {{ with .PrevInSection }}{{ if .Date.Before $current.Date }}{{ $older = . }}{{ else }}{{ $newer = . }}{{ end }}{{ end }}
-    {{ with .NextInSection }}{{ if .Date.Before $current.Date }}{{ $older = . }}{{ else }}{{ $newer = . }}{{ end }}{{ end }}
+    {{/* PrevInSection is the older page, NextInSection the newer one (Hugo's default sort). */}}
+    {{ $older := .PrevInSection }}{{ $newer := .NextInSection }}
     {{ if or $older $newer }}
     <nav class="post-nav" aria-label="이전/다음 글">
         {{ with $older }}<a class="prev" href="{{ .RelPermalink }}"><small>← 이전 글</small>{{ .Title }}</a>{{ end }}

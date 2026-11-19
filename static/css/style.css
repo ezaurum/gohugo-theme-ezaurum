@@ -284,3 +284,6 @@ pre {
 
 .not-found { text-align: center; padding: 4rem 0; }
 .not-found .code { font-size: 4rem; font-weight: 700; color: var(--line); margin: 0; }
+
+.post-body figure { margin: 0 0 1.25rem; }
+.post-body figcaption { color: var(--muted); font-size: .85rem; margin-top: .35rem; }
