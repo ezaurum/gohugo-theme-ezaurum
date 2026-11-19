@@ -22,11 +22,11 @@
     </ul>
 {{ end }}
 
-{{if .NextPage}}
-<a href="{{ .NextPage.Permalink }}"> {{.NextPage.Title}}</a>
+{{if .Next}}
+<a href="{{ .Next.Permalink }}"> {{.Next.Title}}</a>
 {{end}}
-{{if .PrevPage}}
-<a href="{{ .PrevPage.Permalink  }}">{{ .PrevPage.Title}}</a>
+{{if .Prev}}
+<a href="{{ .Prev.Permalink  }}">{{ .Prev.Title}}</a>
 {{end}}
 
 {{if .Params.Series }}
