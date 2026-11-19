@@ -1,14 +1,1 @@
-{{ define "main" }}
-<h2>Tag : {{ .Title }}</h2>
-
-<ul>
-    {{range .Data.Pages}}
-    <li>
-        <a href="{{.Permalink}}">{{.Title}}</a>
-    </li>
-    {{ end }}
-</ul>
-
-{{ partial "adsense" . }}
-
-{{end}}
+{{ define "main" }}{{ partial "term-page" . }}{{ end }}

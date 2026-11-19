@@ -1,0 +1,7 @@
+<h1 class="page-title">{{ .Data.Plural | partial "taxonomy-name" }}</h1>
+<p class="page-desc">{{ len .Data.Terms }}개</p>
+<ul class="chips">
+    {{ range .Data.Terms.ByCount }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<span class="count">{{ .Count }}</span></a></li>
+    {{ end }}
+</ul>

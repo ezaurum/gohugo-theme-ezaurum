@@ -1,7 +1,6 @@
-<ul class="taxonomies series">
-    <h2>카테고리</h2>
-    {{ range $key, $value := $.Site.Taxonomies.categories }}
-        <li><a href="/categories/{{$key}}">{{ $key }}</a></li>
+<h2 class="block-title">카테고리</h2>
+<ul class="chips">
+    {{ range site.Taxonomies.categories.ByCount }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<span class="count">{{ .Count }}</span></a></li>
     {{ end }}
 </ul>
-

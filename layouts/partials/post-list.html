@@ -1,0 +1,9 @@
+{{/* Context: dict "pages" <pages> "section" <bool: show section label> */}}
+<ul class="post-list">
+{{ range .pages }}
+    <li>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+        <span><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ if $.section }}<span class="section">{{ partial "section-name" .Section }}</span>{{ end }}</span>
+    </li>
+{{ end }}
+</ul>

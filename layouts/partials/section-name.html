@@ -1,0 +1,2 @@
+{{- $names := dict "post" "글" "reading" "독서" "recipe" "레시피" "bug" "버그일기" "retrospective" "회고" "study" "공부" "development-log" "개발일지" "development-console" "개발 콘솔" -}}
+{{- index $names . | default (. | humanize) -}}

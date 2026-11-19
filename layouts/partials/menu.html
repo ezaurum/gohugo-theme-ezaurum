@@ -1,7 +1,11 @@
-<nav>
-    {{ range where .Site.Pages "Type" "eq" "page" }}
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
-    {{end}}
-    <a href="/bug">버그일기</a>
-    <a href="/retrospective">회고</a>
+{{ $current := . }}
+<nav class="site-nav" aria-label="사이트 메뉴">
+    {{ range slice "post" "reading" "recipe" "bug" "retrospective" }}
+        {{ with site.GetPage (printf "/%s" .) }}
+        <a href="{{ .RelPermalink }}"{{ if or (eq $current .) ($current.IsDescendant .) }} aria-current="page"{{ end }}>{{ partial "section-name" .Section }}</a>
+        {{ end }}
+    {{ end }}
+    {{ range where site.RegularPages "Type" "page" }}
+        <a href="{{ .RelPermalink }}"{{ if eq $current . }} aria-current="page"{{ end }}>{{ .Title }}</a>
+    {{ end }}
 </nav>

@@ -1,0 +1,7 @@
+<p class="page-kicker">{{ .Data.Singular | default .Kind | partial "taxonomy-name" }}</p>
+<h1 class="page-title">{{ .Title }}</h1>
+<p class="page-desc">글 {{ len .Pages }}개</p>
+{{ $pages := .Pages.ByDate.Reverse }}
+{{ if eq .Data.Plural "series" }}{{ $pages = .Pages.ByDate }}{{ end }}
+{{ partial "post-list" (dict "pages" $pages "section" true) }}
+{{ partial "adsense" . }}

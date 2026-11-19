@@ -1,50 +1,54 @@
-{{define "main"}}
-<main class="post single">
-<h1>{{.Title}}</h1>
-{{ .Date.Format "2006-01-02" }}
-<section>{{.Content}}</section>
+{{ define "main" }}
+<article class="post">
+<header class="post-header">
+    <h1 class="page-title">{{ .Title }}</h1>
+    <div class="post-meta">
+        {{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006년 1월 2일" }}</time>{{ end }}
+        {{ if ne .Type "page" }}<a href="{{ .CurrentSection.RelPermalink }}">{{ partial "section-name" .Section }}</a>{{ end }}
+        {{ with .Params.isbn }}<span>ISBN {{ . }}</span>{{ end }}
+    </div>
+</header>
 
-{{if .Params.Categories }}
-<ul class="taxonomy category">
-    Category
-    {{range .Params.Categories }}
-    <li><a href="/categories/{{ . | urlize }}">{{.}}</a></li>
-    {{end}}</ul>
-</ul>
-{{ end }}
+<div class="post-body">{{ .Content }}</div>
 
-{{if .Params.Tags }}
-    <ul class="taxonomy tag">
-        Tag
-        {{range .Params.Tags }}
-        <li><a href="/tags/{{ . | urlize }}">{{.}}</a></li>
-        {{end}}</ul>
-    </ul>
-{{ end }}
+<footer class="post-footer">
+    {{ with .GetTerms "categories" }}
+    <div class="post-terms"><span>카테고리</span>
+        <ul class="chips">{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>
+    </div>
+    {{ end }}
+    {{ with .GetTerms "tags" }}
+    <div class="post-terms"><span>태그</span>
+        <ul class="chips">{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>
+    </div>
+    {{ end }}
 
-{{if .Next}}
-<a href="{{ .Next.Permalink }}"> {{.Next.Title}}</a>
-{{end}}
-{{if .Prev}}
-<a href="{{ .Prev.Permalink  }}">{{ .Prev.Title}}</a>
-{{end}}
-
-{{if .Params.Series }}
-    <ul>시리즈
-    {{range .Params.Series }}
-        {{$sn := .}}
-
-        {{ range $.Site.Pages.ByTitle }}
-            {{ if in .Params.series $sn  }}
-        <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
-            {{ end }}
+    {{ $current := . }}
+    {{ range .GetTerms "series" }}
+    <section class="series-box">
+        <h2>시리즈 · <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <ol>
+        {{ range .Pages.ByDate }}
+            {{ if eq . $current }}<li aria-current="page"><span>{{ .Title }}</span></li>
+            {{ else }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
         {{ end }}
+        </ol>
+    </section>
+    {{ end }}
 
-    {{end}}
-    </ul>
-{{ end }}
-
+    {{ if ne .Type "page" }}
+    {{ $older := "" }}{{ $newer := "" }}
+    {{ with .PrevInSection }}{{ if .Date.Before $current.Date }}{{ $older = . }}{{ else }}{{ $newer = . }}{{ end }}{{ end }}
+    {{ with .NextInSection }}{{ if .Date.Before $current.Date }}{{ $older = . }}{{ else }}{{ $newer = . }}{{ end }}{{ end }}
+    {{ if or $older $newer }}
+    <nav class="post-nav" aria-label="이전/다음 글">
+        {{ with $older }}<a class="prev" href="{{ .RelPermalink }}"><small>← 이전 글</small>{{ .Title }}</a>{{ end }}
+        {{ with $newer }}<a class="next" href="{{ .RelPermalink }}"><small>다음 글 →</small>{{ .Title }}</a>{{ end }}
+    </nav>
+    {{ end }}
+    {{ end }}
+</footer>
+</article>
 
 {{ partial "adsense" . }}
-</main>
-{{end}}
+{{ end }}

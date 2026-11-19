@@ -1,7 +1,6 @@
-<ul class="taxonomies series">
-    <h2>시리즈</h2>
-    {{ range $key, $value := $.Site.Taxonomies.series }}
-        <li><a href="{{ $value.Page.RelPermalink }}">{{ $key }}</a></li>
+<h2 class="block-title">시리즈</h2>
+<ul class="chips">
+    {{ range site.Taxonomies.series.ByCount }}
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<span class="count">{{ .Count }}</span></a></li>
     {{ end }}
 </ul>
-

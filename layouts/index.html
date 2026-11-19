@@ -1,20 +1,18 @@
-{{define "main"}}
+{{ define "main" }}
+{{ $pages := where site.RegularPages "Type" "ne" "page" }}
+{{ $paginator := .Paginate $pages 20 }}
 
-{{ $paginator := .Paginate (where .Data.Pages "Type" "ne" "page") }}
-
-<ul>
-{{ range $paginator.Pages }}
-    <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
-{{ end }}
-</ul>
+<h2 class="block-title" style="margin-top:0">{{ if eq $paginator.PageNumber 1 }}최근 글{{ else }}{{ $paginator.PageNumber }} 페이지{{ end }}</h2>
+{{ partial "post-list" (dict "pages" $paginator.Pages "section" true) }}
 {{ template "_internal/pagination.html" . }}
 
 {{ partial "adsense" . }}
-{{partial "section-categories" . }}
-{{partial "section-series" . }}
-{{partial "tag-cloud" . }}
 
-{{end}}
+{{ if eq $paginator.PageNumber 1 }}
+{{ partial "section-series" . }}
+{{ partial "section-categories" . }}
+{{ partial "tag-cloud" . }}
+{{ end }}
+{{ end }}
 
-
-{{define "title" }} {{ .Site.Title }} {{end}}
+{{ define "title" }}{{ site.Title }}{{ end }}

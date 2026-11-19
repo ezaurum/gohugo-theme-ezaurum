@@ -1,14 +1,1 @@
-{{ define "main" }}
-<main class="taxonomy category">
-<h2>{{.Title}}</h2>
-
-<ul>
-    {{ range .Data.Pages }}
-    <li>
-        <a href="{{.Permalink}}">{{.Title}}</a>
-    </li>
-    {{ end }}
-</ul>
-{{ partial "adsense" . }}
-</main>
-{{ end }}
+{{ define "main" }}{{ partial "term-page" . }}{{ end }}

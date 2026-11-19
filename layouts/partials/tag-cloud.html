@@ -1,10 +1,9 @@
-
-{{ $tags := $.Site.Taxonomies.tags.ByCount }}
-{{ $v1 := where $tags "Count" ">=" 10 }}
-{{ $v2 := where $v1 "Term" "not in" (slice "hugo" "tags" "rss") }}
-
-{{ range $v2 }}
-    {{ if .Term }}
-        <a href="/tags/{{ urlize .Term }}">{{.Term}}</a>
+<h2 class="block-title">자주 쓴 태그</h2>
+<ul class="chips">
+    {{ range site.Taxonomies.tags.ByCount }}
+        {{ if and (ge .Count 10) (not (in (slice "hugo" "tags" "rss") .Term)) }}
+        <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}<span class="count">{{ .Count }}</span></a></li>
+        {{ end }}
     {{ end }}
-{{ end }}
+</ul>
+<p><a href="/tags/">모든 태그 보기 →</a></p>
